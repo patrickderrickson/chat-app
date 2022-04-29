@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Alert, ScrollView } from 'react-native';
 
+
 import Start from './components/Start';
 import Chat from './components/Chat';
 
