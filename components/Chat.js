@@ -1,7 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
-import { StyleSheet, Text, View, KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
+import { Constants, MapView, Location, Permissions } from 'expo';
+
+
 
 import NetInfo from '@react-native-community/netinfo';
 
@@ -166,6 +171,29 @@ renderInputToolbar(props) {
     )
   }
   
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
+  renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    }
+    return null;
+  }
+
+
   render() {
     const { bgColor } = this.props.route.params;
     let name = this.props.route.params.name;
@@ -182,10 +210,38 @@ renderInputToolbar(props) {
      />
      { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
  }
+
+<TouchableOpacity style={[styles.container]} onPress={this.onActionPress}>
+       <View style={[styles.wrapper, this.props.wrapperStyle]}>
+         <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
+       </View>
+     </TouchableOpacity>
  
      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: 26,
+    height: 26,
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  wrapper: {
+    borderRadius: 13,
+    borderColor: '#b2b2b2',
+    borderWidth: 2,
+    flex: 1,
+  },
+  iconText: {
+    color: '#b2b2b2',
+    fontWeight: 'bold',
+    fontSize: 16,
+    backgroundColor: 'transparent',
+    textAlign: 'center',
+  },
+ });
   
 
