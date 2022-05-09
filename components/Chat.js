@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import CustomActions from './CustomActions';
+
+
 
 import { Constants, MapView, Location, Permissions } from 'expo';
 
@@ -211,11 +214,7 @@ renderInputToolbar(props) {
      { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
  }
 
-<TouchableOpacity style={[styles.container]} onPress={this.onActionPress}>
-       <View style={[styles.wrapper, this.props.wrapperStyle]}>
-         <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
-       </View>
-     </TouchableOpacity>
+
  
      </View>
     );
