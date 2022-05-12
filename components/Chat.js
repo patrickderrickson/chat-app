@@ -5,9 +5,9 @@ import { StyleSheet, Text, View, KeyboardAvoidingView, TouchableOpacity} from 'r
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import CustomActions from './CustomActions';
 
+import * as Location from 'expo-location';
+import MapView from 'react-native-maps';
 
-
-import { Constants, MapView, Location, Permissions } from 'expo';
 
 
 
@@ -109,6 +109,7 @@ export default class Chat extends React.Component {
       this.setState({
         uid: user.uid,
         messages: [],
+        avatar: "https://placeimg.com/140/140/any"
       });
       this.unsubscribe = this.referenceChatMessages
         .orderBy("createdAt", "desc")
@@ -152,8 +153,7 @@ onSend(messages = []) {
   });
 }
 renderInputToolbar(props) {
-  if (this.state.isConnected == false) {
-  } else {
+  if (this.state.isConnected) {
     return(
       <InputToolbar
       {...props}
@@ -183,10 +183,11 @@ renderInputToolbar(props) {
     if (currentMessage.location) {
       return (
         <MapView
-          style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+         showsUserLocation = {true}
+        style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
           region={{
-            latitude: currentMessage.location.latitude,
-            longitude: currentMessage.location.longitude,
+            latitude: parseInt(currentMessage.location.latitude),
+            longitude: parseInt(currentMessage.location.longitude),
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
@@ -207,6 +208,9 @@ renderInputToolbar(props) {
       renderBubble={this.renderBubble.bind(this)}
       messages={this.state.messages}
       onSend={(messages) => this.onSend(messages)}
+      //renderInputToolbar={this.renderInputToolbar.bind(this)}
+      renderActions={this.renderCustomActions}
+      //renderCustomView={this.renderCustomView}
       user={{
         _id: 1,
       }}
