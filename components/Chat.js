@@ -210,7 +210,7 @@ renderInputToolbar(props) {
       onSend={(messages) => this.onSend(messages)}
       //renderInputToolbar={this.renderInputToolbar.bind(this)}
       renderActions={this.renderCustomActions}
-      //renderCustomView={this.renderCustomView}
+      renderCustomView={this.renderCustomView}
       user={{
         _id: 1,
       }}
