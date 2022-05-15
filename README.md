@@ -12,9 +12,9 @@ Data storage availble both online and offline.
 
 Tech Stacks
 
-React Native
-Expo
-Firebase Firestore
+React Native,
+Expo,
+Firebase Firestore,
 Gifted Chat
 
 Installation
