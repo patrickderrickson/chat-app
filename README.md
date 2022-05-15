@@ -5,16 +5,20 @@ Overview
 A mobile app created using React Native. A simple chat interface built using Gifted Chat.
 
 Key Features
+
 A page where users can enter their name and choose a background color for the chat screen before joining the chat.
 A chat page where users can send messages through text, images, and location.
 Data storage availble both online and offline.
+
 Tech Stacks
+
 React Native
 Expo
 Firebase Firestore
 Gifted Chat
 
 Installation
+
 Prerequisites
 Yarn npm install --global yarn
 Expo npm install expo-cli --global
