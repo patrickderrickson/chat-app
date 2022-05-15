@@ -36,7 +36,7 @@ export default class Start extends React.Component {
           style={styles.bgImage}
         >
           <View style={styles.titleBox}>
-            <Text style={styles.title}>App Title</Text>
+            <Text style={styles.title}>Chat</Text>
           </View>
 
           <View style={styles.box}>
